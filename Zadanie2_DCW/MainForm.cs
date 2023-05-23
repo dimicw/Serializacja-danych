@@ -6,9 +6,9 @@ using System.Windows.Forms;
 
 namespace Zadanie2_DCW
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        //klasa do zserializowania
+        // klasa do zserializowania
         [Serializable] 
         public class Client
         {
@@ -17,17 +17,18 @@ namespace Zadanie2_DCW
             public int age;
         }
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
 
+        // metoda serializująca
         private void serializeButton_Click(object sender, EventArgs e)
         {
-            //obiekt do serializacji
+            // obiekt do serializacji
             Client client = new Client();
 
-            //okno zapisu do pliku
+            // okno zapisu do pliku
             saveFileDialog1.Filter = "Pliki binarne (*.dat)|*.dat";
             saveFileDialog1.Title = "Zapisz do pliku";
             
@@ -59,12 +60,13 @@ namespace Zadanie2_DCW
             }
         }
 
+        // metoda deserializująca
         private void deserializeButton_Click(object sender, EventArgs e)
         {
-            //obiekt do zapisu po deserializacji
+            // obiekt do zapisu po deserializacji
             Client client = new Client();
 
-            //okno wyboru pliku do wczytania
+            // okno wyboru pliku do wczytania
             openFileDialog1.Filter = "Pliki binarne (*.dat)|*.dat";
             openFileDialog1.Title = "Otworz plik";
 
@@ -75,10 +77,10 @@ namespace Zadanie2_DCW
 
                 try
                 {
-                    //deserializacja
+                    // deserializacja
                     client = (Client)binaryFormatter.Deserialize(fileStream);
 
-                    //uzupełnienie pól danymi z deserializacji
+                    // uzupełnienie pól danymi z deserializacji
                     tbName.Text = client.name;
                     tbSurname.Text = client.surname;
                     numericAge.Value = client.age;
